@@ -1,4 +1,4 @@
-package br.com.renanrrramossi.movielist.infra;
+package br.com.renanrramossi.movielist.infra;
 
 import java.util.Optional;
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
@@ -6,7 +6,7 @@ import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindException;
 
-import br.com.renanrrramossi.movielist.model.Movie;
+import br.com.renanrramossi.movielist.model.Movie;
 
 @Component
 public class MovieFieldMapper implements FieldSetMapper<Movie> {

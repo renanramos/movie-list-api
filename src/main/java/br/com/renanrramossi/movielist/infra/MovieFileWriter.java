@@ -1,4 +1,6 @@
-package br.com.renanrrramossi.movielist.infra;
+package br.com.renanrramossi.movielist.infra;
+
+import static br.com.renanrramossi.movielist.common.MovieConstants.SQL_COMMAND;
 
 import javax.sql.DataSource;
 
@@ -6,14 +8,10 @@ import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourc
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.stereotype.Component;
 
-import br.com.renanrrramossi.movielist.model.Movie;
+import br.com.renanrramossi.movielist.model.Movie;
 
 @Component
 public class MovieFileWriter extends JdbcBatchItemWriter<Movie> {
-
-	private static final String SQL_COMMAND =
-			"INSERT INTO movie (year, title, studios, producers, winner) "
-					+ "VALUES (:year, :title, :studios, :producers, :winner) ";
 
 	public MovieFileWriter(final DataSource dataSource) {
 		this.setDataSource(dataSource);

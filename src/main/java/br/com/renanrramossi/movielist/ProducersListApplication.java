@@ -1,4 +1,4 @@
-package br.com.renanrrramossi.movielist;
+package br.com.renanrramossi.movielist;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -8,18 +8,19 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import br.com.renanrrramossi.movielist.infra.MovieDataProcessor;
-import br.com.renanrrramossi.movielist.infra.MovieFieldMapper;
-import br.com.renanrrramossi.movielist.infra.MovieFileReader;
-import br.com.renanrrramossi.movielist.infra.MovieFileWriter;
-import br.com.renanrrramossi.movielist.model.Movie;
+import br.com.renanrramossi.movielist.infra.MovieFieldMapper;
+import br.com.renanrramossi.movielist.infra.MovieFileReader;
+import br.com.renanrramossi.movielist.infra.MovieFileWriter;
+import br.com.renanrramossi.movielist.model.Movie;
 
 @SpringBootApplication
 @EnableBatchProcessing
-public class MovieListApplication {
+@EnableAutoConfiguration
+public class ProducersListApplication {
 
 	@Autowired
 	private JobBuilderFactory jobs;
@@ -28,7 +29,7 @@ public class MovieListApplication {
 	private StepBuilderFactory stepBuilderFactory;
 
 	public static void main(String[] args) {
-		SpringApplication.run(MovieListApplication.class, args);
+		SpringApplication.run(ProducersListApplication.class, args);
 	}
 
 	@Bean("movieJob")
@@ -42,12 +43,10 @@ public class MovieListApplication {
 
 	@Bean("movieStep")
 	public Step buildMoviesStep(final MovieFileReader movieFileReader, final MovieFieldMapper mapper,
-			final MovieDataProcessor movieProcessor,
 			final MovieFileWriter movieFileWriter) {
 		return stepBuilderFactory.get("movieStep")
 				.<Movie, Movie>chunk(10)
 				.reader(movieFileReader)
-				.processor(movieProcessor)
 				.writer(movieFileWriter)
 				.build();
 	}
