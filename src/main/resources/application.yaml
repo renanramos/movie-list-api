@@ -1,0 +1,18 @@
+spring:
+  batch:
+    jdbc:
+      initialize-schema: always
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:movies
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        trace: false
